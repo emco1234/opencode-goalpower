@@ -308,9 +308,16 @@ describe("detectPrematureStop", () => {
 // ---------------------------------------------------------------------------
 
 describe("plugin export", () => {
-  it("exports a default plugin object", async () => {
+  it("exports a default plugin descriptor object with id + server", async () => {
     const mod = await import("../src/server.ts")
     expect(mod.default).toBeDefined()
-    expect(typeof mod.default).toBe("function")
+    expect(typeof mod.default).toBe("object")
+    expect((mod.default as { id?: string }).id).toBe("local.opencode-goalpower.server")
+    expect(typeof (mod.default as { server?: unknown }).server).toBe("function")
+  })
+
+  it("also exports plugin as named export for backwards compatibility", async () => {
+    const mod = await import("../src/server.ts")
+    expect(typeof (mod as { plugin?: unknown }).plugin).toBe("function")
   })
 })

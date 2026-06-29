@@ -458,7 +458,7 @@ function pushCheckpoint(goal: Goal, summary: string): void {
 // Plugin
 // ---------------------------------------------------------------------------
 
-export const plugin = async ({ client }: { client: unknown }, options: Options = {}) => {
+const server: Plugin = (async ({ client }: { client: Parameters<Plugin>[0]["client"] }, options: Options = {}) => {
   const config: Required<Options> = { ...DEFAULTS, ...options }
   const activeContinuations = new Set<string>()
 
@@ -977,7 +977,13 @@ Compaction: on /compact mid-loop, the plugin's experimental.session.compacting h
       // The session.idle hook above handles the auto-continuation trigger.
     ],
   }
-  return result as unknown as Plugin
+  return result as unknown as ReturnType<Plugin>
+}) as unknown as Plugin
+
+export default {
+  id: "local.opencode-goalpower.server",
+  server,
 }
 
-export default plugin
+// Also export server as plugin for backwards compatibility with import { plugin } from ...
+export { server as plugin }
