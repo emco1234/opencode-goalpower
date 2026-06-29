@@ -309,6 +309,7 @@ All writes are atomic (`tmp → rename`), file mode `0o600`, parent dirs `0o700`
 
 See [`examples/`](./examples) for:
 
+- [`goalpower-sessions.md`](./examples/goalpower-sessions.md) — real `/goalpower` session transcripts (quick refactor, multi-round, high-stakes, sub-commands, stuck handling, compaction)
 - [`basic-objective.md`](./examples/basic-objective.md) — simple refactor goal
 - [`high-stakes.md`](./examples/high-stakes.md) — multi-skeptic production rollout
 - [`debugging-session.md`](./examples/debugging-session.md) — when Skeptics caught what Implementer missed

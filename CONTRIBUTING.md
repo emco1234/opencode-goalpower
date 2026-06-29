@@ -173,4 +173,4 @@ By contributing, you agree that your contributions will be licensed under the [M
 
 ## Questions?
 
-Open a [discussion](https://github.com/emco1234/opencode-goalpower/discussions) or an [issue](https://github.com/emco1234/opencode-goalpower/issues/new). Maintainers respond within 1–2 days typically.
+Open a [discussion](https://github.com/emco1234/opencode-goalpower/discussions) or email **info@contentplanning.ai**. Maintainers respond within 1–2 days typically.

@@ -22,7 +22,11 @@
     "ai-coding-agent"
   ],
   "license": "MIT",
-  "author": "emco1234",
+  "author": {
+    "name": "emco1234",
+    "email": "info@contentplanning.ai",
+    "url": "https://github.com/emco1234"
+  },
   "homepage": "https://github.com/emco1234/opencode-goalpower",
   "repository": {
     "type": "git",

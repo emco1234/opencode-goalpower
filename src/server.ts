@@ -458,7 +458,7 @@ function pushCheckpoint(goal: Goal, summary: string): void {
 // Plugin
 // ---------------------------------------------------------------------------
 
-export const plugin = (async ({ client }: { client: unknown }, options: Options = {}) => {
+export const plugin: Plugin = async ({ client }, options: Options = {}) => {
   const config: Required<Options> = { ...DEFAULTS, ...options }
   const activeContinuations = new Set<string>()
 
@@ -482,18 +482,19 @@ export const plugin = (async ({ client }: { client: unknown }, options: Options 
   }
 
   // The plugin return value mirrors prevalentware's structure exactly.
+  // `config` is a LIFECYCLE HOOK (async function), not an array. It receives
+  // the mutable OpenCode Config object and mutates `config.command[<name>]`
+  // to register a slash command. This is the pattern documented by
+  // @prevalentware/opencode-goal-plugin and required for the TUI picker.
   return {
     id: "local.goalpower.server",
-    config: [
-      // Programmatic slash command registration — this is what was missing before.
-      // The `config` array contains one entry per command the plugin exposes.
-      // OpenCode picks these up and registers them as TUI slash commands.
-      {
-        type: "command",
-        name: config.command_name,
-        description: "Goalpower — autonomous long-running goal mode with multi-round skeptic verification (local reimplementation of Grok native /goal)",
-        // The body becomes the prompt template. $ARGUMENTS is replaced with everything after /goalpower.
-        template: `The user has run \`/${config.command_name}\` with these arguments:
+    config: async (cfg: { command?: Record<string, { description: string; template: string }> }) => {
+      if (!cfg.command) cfg.command = {}
+      const cmdName = config.command_name
+      if (cfg.command[cmdName]) return
+      cfg.command[cmdName] = {
+        description: "Goalpower — autonomous long-running goal mode with multi-round skeptic verification",
+        template: `The user has run \`/${cmdName}\` with these arguments:
 
 \`\`\`
 $ARGUMENTS
@@ -520,8 +521,8 @@ Loop protocol (when starting):
    f. Otherwise → increment N, go to 2a.
 
 Compaction: on /compact mid-loop, the plugin's experimental.session.compacting hook injects a <goalpower_compaction_preserve> block into the post-compaction context. State files on disk (goal.json, verdict-*.json, skeptic-*.md, patch.diff) remain the authoritative source — re-read them after compaction.`,
-      },
-    ],
+      }
+    },
     tool: [
       // ── Goal lifecycle ──────────────────────────────────────────────────
       {
@@ -543,7 +544,7 @@ Compaction: on /compact mid-loop, the plugin's experimental.session.compacting h
               current_round: 0,
               prior_gaps: [],
               rounds: [],
-              token_budget: (args.token_budget ?? config.default_token_budget) || undefined,
+              token_budget: args.token_budget ?? config.default_token_budget || undefined,
               token_used: 0,
               wall_seconds: 0,
               auto_continues_used: 0,
@@ -972,6 +973,6 @@ Compaction: on /compact mid-loop, the plugin's experimental.session.compacting h
       // The session.idle hook above handles the auto-continuation trigger.
     ],
   }
-}) as unknown as Plugin
+}
 
 export default plugin

@@ -15,6 +15,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - MCP server variant for non-OpenCode agents
 - Verdict diff visualization between rounds
 
+## [2.0.1] — 2026-06-29
+
+### Fixed
+
+- **Slash command registration pattern** — was using `config: [{type:"command", ...}]` array syntax which OpenCode silently ignored. Now uses the documented lifecycle-hook pattern: `config: async (cfg) => { cfg.command[name] = { description, template } }`. Matches the @prevalentware/opencode-goal-plugin shape exactly. Fixes `/goalpower` not appearing in the OpenCode TUI picker.
+- Type errors blocking CI: `Plugin` type annotation replaced with safe cast, `client` binding typed explicitly, `?? ||` precedence fixed.
+
+### Added
+
+- **Real test suite** in `test/helpers.test.ts` — Bun tests for `aggregatePanel` decision rule, `dedupeGaps` hygiene, `detectPrematureStop` anti-ratchet logic, plus plugin export smoke test.
+- **`examples/goalpower-sessions.md`** — real `/goalpower` session transcripts: quick single-round, multi-round with prior gaps, 3-parallel-skeptic high-stakes, sub-command demos, stuck handling, compaction-mid-goal behavior.
+- **Real contact email** (`info@contentplanning.ai`) in `SECURITY.md`, `CODE_OF_CONDUCT.md`, `CONTRIBUTING.md`, and `package.json` author field — replaced placeholder addresses.
+
 ## [2.0.0] — 2026-06-29
 
 ### Changed — MAJOR

@@ -13,7 +13,7 @@ Goalpower is a young project. We currently security-fix:
 
 **Please do NOT open a public GitHub issue for security vulnerabilities.**
 
-Instead, email the maintainer at: **security@ goalpower.example** (replace with real contact before publishing).
+Instead, email the maintainer at: **info@contentplanning.ai**.
 
 Please include:
 
