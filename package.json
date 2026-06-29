@@ -35,13 +35,11 @@
   "exports": {
     "./server": {
       "import": "./src/server.ts"
-    },
-    "./tui": {
-      "import": "./src/tui.tsx"
     }
   },
   "files": [
-    "src",
+    "src/server.ts",
+    "src/tui.tsx",
     "LICENSE",
     "README.md",
     "CHANGELOG.md"

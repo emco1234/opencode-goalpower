@@ -458,7 +458,7 @@ function pushCheckpoint(goal: Goal, summary: string): void {
 // Plugin
 // ---------------------------------------------------------------------------
 
-export const plugin: Plugin = async ({ client }, options: Options = {}) => {
+export const plugin = (async ({ client }, options: Options = {}) => {
   const config: Required<Options> = { ...DEFAULTS, ...options }
   const activeContinuations = new Set<string>()
 
@@ -543,7 +543,7 @@ Compaction: on /compact mid-loop, the plugin's experimental.session.compacting h
               current_round: 0,
               prior_gaps: [],
               rounds: [],
-              token_budget: args.token_budget ?? config.default_token_budget || undefined,
+              token_budget: (args.token_budget ?? config.default_token_budget) || undefined,
               token_used: 0,
               wall_seconds: 0,
               auto_continues_used: 0,
@@ -972,6 +972,6 @@ Compaction: on /compact mid-loop, the plugin's experimental.session.compacting h
       // The session.idle hook above handles the auto-continuation trigger.
     ],
   }
-}
+}) as unknown as Plugin
 
 export default plugin
