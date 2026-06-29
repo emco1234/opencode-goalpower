@@ -15,6 +15,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - MCP server variant for non-OpenCode agents
 - Verdict diff visualization between rounds
 
+## [2.0.3] — 2026-06-29
+
+### Added
+
+- **Dynamic K Skeptics per round** — instead of a static `config.skeptics` value, the orchestrator now picks K adaptively based on round/stakes:
+  - Round 1 or simple/low-stakes goal → K = 1 skeptic
+  - Round 2-3 or high-stakes (production, security, payments) → K = 2 skeptics
+  - Round 4+ OR repeatedly refuted OR "stuck" signs → K = 3 skeptics
+  - Why: catches issues a single Skeptic would miss — different mental models surface different gaps. Bigger stakes → broader adversarial coverage.
+- **`commands/goalpower.md`** — canonical slash command template shipped in the repo. Users can drop it into `~/.config/opencode/commands/` directly (no plugin install required) to get `/goalpower`.
+
+### Changed
+
+- Panel aggregation rule documented explicitly in `commands/goalpower.md`: high-confidence single-refutation OR 2+ medium-confidence agreement → REFUTED.
+
 ## [2.0.2] — 2026-06-29
 
 ### Fixed
