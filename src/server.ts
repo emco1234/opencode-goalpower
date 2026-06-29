@@ -488,7 +488,7 @@ export const plugin: Plugin = async ({ client }, options: Options = {}) => {
   // @prevalentware/opencode-goal-plugin and required for the TUI picker.
   return {
     id: "local.goalpower.server",
-    config: async (cfg: { command?: Record<string, { description: string; template: string }> }) => {
+    config: async (cfg: { command?: Record<string, { description?: string; template: string; agent?: string; model?: string; subtask?: boolean }> }) => {
       if (!cfg.command) cfg.command = {}
       const cmdName = config.command_name
       if (cfg.command[cmdName]) return
@@ -544,7 +544,7 @@ Compaction: on /compact mid-loop, the plugin's experimental.session.compacting h
               current_round: 0,
               prior_gaps: [],
               rounds: [],
-              token_budget: args.token_budget ?? config.default_token_budget || undefined,
+              token_budget: (args.token_budget ?? config.default_token_budget) || undefined,
               token_used: 0,
               wall_seconds: 0,
               auto_continues_used: 0,
