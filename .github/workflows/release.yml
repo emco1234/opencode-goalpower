@@ -1,0 +1,57 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Install
+        run: bun install --frozen-lockfile
+
+      - name: Verify clean typecheck before release
+        run: bun run typecheck
+
+      - name: Extract version from tag
+        id: version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+
+      - name: Build release notes from CHANGELOG.md
+        id: notes
+        run: |
+          # Extract the section for this version from CHANGELOG.md
+          VERSION="${{ steps.version.outputs.VERSION }}"
+          # Strip leading 'v'
+          VERSION_NUM="${VERSION#v}"
+          # Grab everything between "## [VERSION_NUM]" and the next "## ["
+          node -e "
+          const fs = require('fs');
+          const changelog = fs.readFileSync('CHANGELOG.md', 'utf8');
+          const pattern = new RegExp(\`## \[${VERSION_NUM}\][^]*?(?=## \[)\`, 's');
+          const match = changelog.match(pattern);
+          if (!match) { console.error('No changelog entry for ' + VERSION_NUM); process.exit(1); }
+          fs.writeFileSync('/tmp/release-notes.md', match[0]);
+          "
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          body_path: /tmp/release-notes.md
+          draft: false
+          prerelease: false
+          generate_release_notes: false

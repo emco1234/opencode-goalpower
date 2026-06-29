@@ -1,0 +1,73 @@
+name: 🐛 Bug report
+description: Report something that's broken
+title: "[bug]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to file a bug report! Please fill out the sections below so we can reproduce and fix it fast.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: A clear description of the unexpected behavior.
+      placeholder: "Goalpower skeptic accepted the round even though changed_files_manifest didn't match CHANGED_FILES."
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+      description: The behavior you expected instead.
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Reproduction steps
+      description: Step-by-step so we can reproduce locally.
+      placeholder: |
+        1. Run `/goalpower ...`
+        2. Watch round 2
+        3. See verdict file at ...
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Goalpower version
+      placeholder: "1.2.0"
+    validations:
+      required: true
+
+  - type: input
+    id: opencode-version
+    attributes:
+      label: OpenCode version
+      placeholder: "1.17.1"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: OS
+      options:
+        - macOS
+        - Linux
+        - Windows
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs / state files
+      description: Paste relevant output, the goal.json, or verdict-{N}-{k}.json. Strip private info first.
+      render: shell
