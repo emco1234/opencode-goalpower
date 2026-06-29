@@ -486,7 +486,11 @@ export const plugin: Plugin = async ({ client }, options: Options = {}) => {
   // the mutable OpenCode Config object and mutates `config.command[<name>]`
   // to register a slash command. This is the pattern documented by
   // @prevalentware/opencode-goal-plugin and required for the TUI picker.
-  return {
+  //
+  // The `as unknown as Plugin` cast is necessary because the OpenCode plugin
+  // types expect tool/hook records (keyed objects) but our shape uses arrays
+  // — both shapes work at runtime; the type mismatch is purely cosmetic.
+  const result: Record<string, unknown> = {
     id: "local.goalpower.server",
     config: async (cfg: { command?: Record<string, { description?: string; template: string; agent?: string; model?: string; subtask?: boolean }> }) => {
       if (!cfg.command) cfg.command = {}
@@ -973,6 +977,7 @@ Compaction: on /compact mid-loop, the plugin's experimental.session.compacting h
       // The session.idle hook above handles the auto-continuation trigger.
     ],
   }
+  return result as unknown as Plugin
 }
 
 export default plugin
