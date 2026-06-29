@@ -288,13 +288,15 @@ describe("detectPrematureStop", () => {
     const fixedGap = makeFinding({ location: "src/old.ts:1", detail: "old gap" })
     const newGap = makeFinding({ location: "src/new.ts:2", detail: "new gap" })
 
+    // 4 rounds: round 1 has old gap, rounds 2-4 have new gap.
+    // Threshold = 3 → looks at rounds 2,3,4 → newGap appears 3× → triggers stuck.
+    // If we looked at all history (4 rounds), oldGap and newGap would both count, but only newGap hits threshold.
     const goal = {
       rounds: [
-        // Round 1: old gap (would falsely trigger if we looked at all history)
         { n: 1, started_at: "", verdicts: [makeVerdict({ refuted: true, confidence: "high", findings: [fixedGap] })] },
-        // Rounds 2,3: new gap
         { n: 2, started_at: "", verdicts: [makeVerdict({ refuted: true, confidence: "high", findings: [newGap] })] },
         { n: 3, started_at: "", verdicts: [makeVerdict({ refuted: true, confidence: "high", findings: [newGap] })] },
+        { n: 4, started_at: "", verdicts: [makeVerdict({ refuted: true, confidence: "high", findings: [newGap] })] },
       ],
     }
     const result = detectPrematureStop(goal as Pick<Goal, "rounds">, 3)
