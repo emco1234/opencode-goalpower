@@ -23,7 +23,7 @@ Goalpower is actively maintained. The architecture follows the OpenCode plugin p
 ### Get the code
 
 ```bash
-git clone https://github.com/emco1234/goalpower.git
+git clone https://github.com/emco1234/opencode-goalpower.git
 cd goalpower
 bun install
 ```
@@ -72,7 +72,7 @@ The plugin is organized around four concepts:
 | State | `src/state.ts` (planned) | Filesystem-backed atomic state with mutation queue |
 | TUI | `src/tui.tsx` | Status-line rendering (optional) |
 
-Currently everything lives in `src/server.ts` for ease of review. Splitting into the above files is on the roadmap — see [open issues](https://github.com/emco1234/goalpower/issues).
+Currently everything lives in `src/server.ts` for ease of review. Splitting into the above files is on the roadmap — see [open issues](https://github.com/emco1234/opencode-goalpower/issues).
 
 ### Key invariants
 
@@ -173,4 +173,4 @@ By contributing, you agree that your contributions will be licensed under the [M
 
 ## Questions?
 
-Open a [discussion](https://github.com/emco1234/goalpower/discussions) or an [issue](https://github.com/emco1234/goalpower/issues/new). Maintainers respond within 1–2 days typically.
+Open a [discussion](https://github.com/emco1234/opencode-goalpower/discussions) or an [issue](https://github.com/emco1234/opencode-goalpower/issues/new). Maintainers respond within 1–2 days typically.

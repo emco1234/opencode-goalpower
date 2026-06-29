@@ -4,7 +4,7 @@ This document describes how to cut a new release of Goalpower.
 
 ## Prerequisites
 
-- Push access to `emco1234/goalpower`
+- Push access to `emco1234/opencode-goalpower`
 - A clean `main` branch (CI green)
 - `bun` installed locally
 
@@ -25,9 +25,9 @@ Move entries from `[Unreleased]` into a new version section:
 Add the new version to the link references at the bottom:
 
 ```markdown
-[Unreleased]: https://github.com/emco1234/goalpower/compare/v1.2.1...HEAD
-[1.2.1]: https://github.com/emco1234/goalpower/releases/tag/v1.2.1
-[1.2.0]: https://github.com/emco1234/goalpower/releases/tag/v1.2.0
+[Unreleased]: https://github.com/emco1234/opencode-goalpower/compare/v1.2.1...HEAD
+[1.2.1]: https://github.com/emco1234/opencode-goalpower/releases/tag/v1.2.1
+[1.2.0]: https://github.com/emco1234/opencode-goalpower/releases/tag/v1.2.0
 ```
 
 ### 2. Bump package.json
@@ -65,7 +65,7 @@ Pushing the `v*.*.*` tag triggers `.github/workflows/release.yml` which:
 
 ### 6. Verify
 
-- Check the [Releases page](https://github.com/emco1234/goalpower/releases)
+- Check the [Releases page](https://github.com/emco1234/opencode-goalpower/releases)
 - Confirm the release notes match the CHANGELOG section
 - Confirm the tag is on the correct commit
 

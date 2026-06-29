@@ -15,6 +15,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - MCP server variant for non-OpenCode agents
 - Verdict diff visualization between rounds
 
+## [2.0.0] — 2026-06-29
+
+### Changed — MAJOR
+
+- **Renamed package to `opencode-goalpower`** to reflect the project's identity as *the* goal plugin for OpenCode. Old `goalpower` references continue to work as aliases.
+- **README retitled to "OpenCode Goalpower V2"** with SEO keywords for users searching for `opencode goal`, `opencode goal mode`, `opencode goal plugin`, and related queries.
+- Bumped to major version 2.0.0 to signal the public, stable, community-ready release. No breaking API changes from 1.2.0 — the version bump is for naming/branding clarity.
+
+### Added
+
+- New SEO-friendly repo URL: `github.com/emco1234/opencode-goalpower` (old URL `emco1234/goalpower` redirects automatically).
+- Keyword block in README explicitly listing all common search queries this project answers.
+- Expanded `package.json` keyword set: `opencode-goal`, `opencode-goal-mode`, `opencode-goalpower`, `goal-plugin`, `ai-coding-agent`, `llm`.
+
+### Migration from 1.x
+
+Users who installed 1.2.0 don't need to change anything in their `opencode.jsonc`. The slash command `/goalpower` is unchanged. Plugin path can be either:
+
+```bash
+git clone https://github.com/emco1234/opencode-goalpower.git \
+  ~/.config/opencode/plugins/goalpower
+```
+
+(or `opencode-goalpower` as the directory name — both work)
+
 ## [1.2.0] — 2026-06-29
 
 ### Added
@@ -52,6 +77,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial OpenCode plugin with tools but no command registration.
 - Initial Grok CLI skill variant (separate codebase).
 
-[Unreleased]: https://github.com/emco1234/goalpower/compare/v1.2.0...HEAD
-[1.2.0]: https://github.com/emco1234/goalpower/releases/tag/v1.2.0
-[1.1.0]: https://github.com/emco1234/goalpower/releases/tag/v1.1.0
+[Unreleased]: https://github.com/emco1234/opencode-goalpower/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/emco1234/opencode-goalpower/releases/tag/v2.0.0
+[1.2.0]: https://github.com/emco1234/opencode-goalpower/releases/tag/v1.2.0
+[1.1.0]: https://github.com/emco1234/opencode-goalpower/releases/tag/v1.1.0

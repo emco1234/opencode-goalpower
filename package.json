@@ -1,28 +1,35 @@
 {
-  "name": "goalpower",
-  "version": "1.2.0",
-  "description": "Long-running autonomous goal mode with multi-round skeptic verification for OpenCode. Stop accepting 'I'm done' on faith — make every completion claim pass a panel of adversarial skeptics.",
+  "name": "opencode-goalpower",
+  "version": "2.0.0",
+  "description": "OpenCode Goalpower V2 — the autonomous goal mode plugin for OpenCode. Multi-round skeptic verification, anti-fabrication honesty anchor, infinite loop with compaction preservation. The /goal plugin for OpenCode you've been looking for.",
   "keywords": [
     "opencode",
     "opencode-plugin",
+    "opencode-goal",
+    "opencode-goal-mode",
+    "opencode-goalpower",
     "goal",
     "goal-mode",
+    "goal-plugin",
     "skeptic",
     "autonomous",
+    "autonomous-agents",
     "long-running",
     "ai-agent",
     "verifiable",
-    "anti-fabrication"
+    "anti-fabrication",
+    "llm",
+    "ai-coding-agent"
   ],
   "license": "MIT",
   "author": "emco1234",
-  "homepage": "https://github.com/emco1234/goalpower",
+  "homepage": "https://github.com/emco1234/opencode-goalpower",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/emco1234/goalpower.git"
+    "url": "git+https://github.com/emco1234/opencode-goalpower.git"
   },
   "bugs": {
-    "url": "https://github.com/emco1234/goalpower/issues"
+    "url": "https://github.com/emco1234/opencode-goalpower/issues"
   },
   "type": "module",
   "exports": {

@@ -1,23 +1,39 @@
 <div align="center">
 
-# ⚡ Goalpower
+# ⚡ OpenCode Goalpower V2
 
-### Long-running autonomous goal mode with multi-round skeptic verification for OpenCode
+### The autonomous goal mode plugin for OpenCode — multi-round skeptic verification
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![OpenCode](https://img.shields.io/badge/OpenCode-%E2%89%A51.17.1-blueviolet)](https://opencode.ai)
 [![TypeScript](https://img.shields.io/badge/TypeScript-strict-blue)](https://www.typescriptlang.org)
 [![Type: Plugin](https://img.shields.io/badge/Type-Plugin-orange)](#)
+[![Version](https://img.shields.io/badge/version-2.0.0-blue)](./CHANGELOG.md)
 
 **Stop accepting "I'm done" on faith. Make every completion claim pass a panel of adversarial skeptics.**
+
+> **The OpenCode goal plugin** — when you need an autonomous agent that actually finishes the job, not just claims to.
 
 </div>
 
 ---
 
-## 🎯 What is Goalpower?
+## 🔍 Looking for an OpenCode goal mode?
 
-Goalpower is an OpenCode plugin that adds a **persistent, multi-round goal-execution loop** to your AI coding agent. When you give it an objective, it:
+You found it. **OpenCode Goalpower V2** is the goal-execution plugin for [OpenCode](https://opencode.ai) that treats **honesty and verifiability as a system-level contract**, enforced by adversarial subagents.
+
+If you searched for any of these, this is the right repo:
+
+- `opencode goal` · `opencode goal mode` · `opencode /goal`
+- `opencode goal plugin` · `opencode autonomous agent`
+- `opencode long-running task` · `opencode ai agent verifiable`
+- `opencode skeptic verification` · `opencode anti-fabrication`
+
+---
+
+## 🎯 What is OpenCode Goalpower?
+
+OpenCode Goalpower V2 is an [OpenCode](https://opencode.ai) plugin that adds a **persistent, multi-round goal-execution loop** to your AI coding agent. When you give it an objective, it:
 
 1. **Spawns an Implementer** that works toward the objective autonomously
 2. **Spawns a panel of Skeptics** that audit every claim against the real files on disk
@@ -54,13 +70,13 @@ Think of it as **compulsory code review for every "complete" claim**, baked into
 1. **Clone the repo into your OpenCode plugins directory:**
 
 ```bash
-git clone https://github.com/emco1234/goalpower.git \
+git clone https://github.com/emco1234/opencode-goalpower.git \
   ~/.config/opencode/plugins/goalpower
 ```
 
 > **Windows (PowerShell):**
 > ```powershell
-> git clone https://github.com/emco1234/goalpower.git `
+> git clone https://github.com/emco1234/opencode-goalpower.git `
 >   "$env:USERPROFILE\.config\opencode\plugins\goalpower"
 > ```
 
@@ -88,7 +104,7 @@ git clone https://github.com/emco1234/goalpower.git \
 ### Option B — From source (development)
 
 ```bash
-git clone https://github.com/emco1234/goalpower.git
+git clone https://github.com/emco1234/opencode-goalpower.git
 cd goalpower
 bun install
 bun run typecheck
@@ -302,7 +318,7 @@ See [`examples/`](./examples) for:
 ## 🛠️ Development
 
 ```bash
-git clone https://github.com/emco1234/goalpower.git
+git clone https://github.com/emco1234/opencode-goalpower.git
 cd goalpower
 bun install
 bun run typecheck   # strict TS
@@ -322,7 +338,7 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for the full dev guide.
 - [ ] MCP server variant for non-OpenCode agents
 - [ ] Verdict diff visualization between rounds
 
-See [open issues](https://github.com/emco1234/goalpower/issues) for the full list. PRs welcome.
+See [open issues](https://github.com/emco1234/opencode-goalpower/issues) for the full list. PRs welcome.
 
 ---
 
@@ -349,10 +365,10 @@ Distributed under the **MIT License**. See [`LICENSE`](./LICENSE) for the full t
 
 ## ⭐ Stargazers over time
 
-[![Star History Chart](https://api.star-history.com/svg?repos=emco1234/goalpower&type=Date)](https://star-history.com/#emco1234/goalpower&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=emco1234/opencode-goalpower&type=Date)](https://star-history.com/#emco1234/opencode-goalpower&Date)
 
 <div align="center">
 
-**If Goalpower saved you from a fabricated "done" — consider [starring ⚡](https://github.com/emco1234/goalpower/stargazers) the repo.**
+**If Goalpower saved you from a fabricated "done" — consider [starring ⚡](https://github.com/emco1234/opencode-goalpower/stargazers) the repo.**
 
 </div>
