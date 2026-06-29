@@ -458,7 +458,7 @@ function pushCheckpoint(goal: Goal, summary: string): void {
 // Plugin
 // ---------------------------------------------------------------------------
 
-export const plugin: Plugin = async ({ client }, options: Options = {}) => {
+export const plugin = async ({ client }: { client: unknown }, options: Options = {}) => {
   const config: Required<Options> = { ...DEFAULTS, ...options }
   const activeContinuations = new Set<string>()
 
