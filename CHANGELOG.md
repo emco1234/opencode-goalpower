@@ -15,6 +15,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - MCP server variant for non-OpenCode agents
 - Verdict diff visualization between rounds
 
+## [2.0.2] — 2026-06-29
+
+### Fixed
+
+- **CRITICAL: Plugin export shape was wrong** — was using `export const plugin = (...)` + `export default plugin`. OpenCode's plugin loader expects `{ id, server }` as the default export descriptor. Switched to the canonical pattern:
+
+  ```ts
+  const server: Plugin = (async (...) => {...}) as unknown as Plugin
+  export default { id: "local.opencode-goalpower.server", server }
+  export { server as plugin }
+  ```
+
+  Without this exact shape, the plugin is loaded but no commands/tools/hooks register. This was the root cause of `/goalpower` not appearing in the OpenCode TUI picker.
+
+- Updated `test/helpers.test.ts` smoke test to validate the new `{id, server}` default-export descriptor.
+
 ## [2.0.1] — 2026-06-29
 
 ### Fixed
@@ -90,7 +106,9 @@ git clone https://github.com/emco1234/opencode-goalpower.git \
 - Initial OpenCode plugin with tools but no command registration.
 - Initial Grok CLI skill variant (separate codebase).
 
-[Unreleased]: https://github.com/emco1234/opencode-goalpower/compare/v2.0.0...HEAD
+[Unreleased]: https://github.com/emco1234/opencode-goalpower/compare/v2.0.2...HEAD
+[2.0.2]: https://github.com/emco1234/opencode-goalpower/releases/tag/v2.0.2
+[2.0.1]: https://github.com/emco1234/opencode-goalpower/releases/tag/v2.0.1
 [2.0.0]: https://github.com/emco1234/opencode-goalpower/releases/tag/v2.0.0
 [1.2.0]: https://github.com/emco1234/opencode-goalpower/releases/tag/v1.2.0
 [1.1.0]: https://github.com/emco1234/opencode-goalpower/releases/tag/v1.1.0
