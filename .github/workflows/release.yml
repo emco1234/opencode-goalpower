@@ -33,20 +33,23 @@ jobs:
 
       - name: Build release notes from CHANGELOG.md
         id: notes
+        env:
+          VERSION: ${{ steps.version.outputs.VERSION }}
         run: |
-          # Extract the section for this version from CHANGELOG.md
-          VERSION="${{ steps.version.outputs.VERSION }}"
-          # Strip leading 'v'
+          # Extract the section for this version from CHANGELOG.md using awk.
+          # Robust against regex escaping issues — no Node eval needed.
           VERSION_NUM="${VERSION#v}"
-          # Grab everything between "## [VERSION_NUM]" and the next "## ["
-          node -e "
-          const fs = require('fs');
-          const changelog = fs.readFileSync('CHANGELOG.md', 'utf8');
-          const pattern = new RegExp(\`## \[${VERSION_NUM}\][^]*?(?=## \[)\`, 's');
-          const match = changelog.match(pattern);
-          if (!match) { console.error('No changelog entry for ' + VERSION_NUM); process.exit(1); }
-          fs.writeFileSync('/tmp/release-notes.md', match[0]);
-          "
+          awk -v v="$VERSION_NUM" '
+            $0 ~ "^## \\[" v "\\]" { in_section=1; print; next }
+            /^## \[/ { if (in_section) exit }
+            in_section { print }
+          ' CHANGELOG.md > /tmp/release-notes.md
+          if [ ! -s /tmp/release-notes.md ]; then
+            echo "::error::No CHANGELOG.md entry for version $VERSION_NUM"
+            exit 1
+          fi
+          echo "Release notes preview:"
+          cat /tmp/release-notes.md
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
